@@ -1,0 +1,17 @@
+{
+  "bikes": [
+    {
+      "id": 1,
+      "name": "GIANT Anthem",
+      "details": [
+        {
+          "name": "Reeba",
+          "brand": "Rockshox",
+          "type": "FORK",
+          "services": []
+        }
+      ],
+      "year": 2014
+    }
+  ]
+}
