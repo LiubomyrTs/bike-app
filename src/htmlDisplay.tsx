@@ -1,53 +1,40 @@
 import { createElement } from "./tools/jsxFactory";
 import { Bike } from "./data/entities";
+import { BikeList } from "./bikesList";
+import { DataSource } from "./data/remoteDataSource";
+import { ActiveModal } from "./activeModal";
 
 export class HTMLDisplay {
-  props: {
-    bikes: Bike[];
-  };
+  private containerElement: HTMLElement;
 
-  quantity = 1;
-
-  public clearBikes = () => {
-    console.log('clearBikes');
-    this.quantity++;
-    this.props.bikes = [];
-    console.log(this.quantity);
+  constructor() {
+    this.containerElement = document.createElement('div');
   }
 
-  public getContent() {
-    return (
+  props: {
+    dataSource: DataSource;
+  };
+
+  async getContent(): Promise<HTMLElement> {
+    await this.updateContent();
+    return this.containerElement;
+  }
+
+  async updateContent() {
+    let bikes = (await this.props.dataSource.loadBikes()).data;
+    this.containerElement.innerHTML = '';
+    let content =
       <div>
-        <h1>{this.quantity}</h1>
-        {this.props.bikes.map((bike) => {
-          return (
-            <div className="card" style="width: 18rem;">
-              <div className="card-body">
-                <h5 className="card-title">
-                  {bike.name} ({bike.year})
-                </h5>
-              </div>
-              <ul className="list-group list-group-flush">
-                {bike.details.map((detail) => {
-                  return (
-                    <li className="list-group-item">
-                      {detail.type.toLowerCase()} - {detail.brand} {detail.name}
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="card-body">
-                <a onclick={ this.clearBikes } className="card-link">
-                  Card link
-                </a>
-                <a className="card-link">
-                  Another link
-                </a>
-              </div>
-            </div>
-          );
-        })}
+        <ActiveModal />
+        <BikeList 
+          toggleServiceModal={ this.toggleServiceModal.bind(this) }
+          bikes={ bikes }
+        />
       </div>
-    );
+    this.containerElement.appendChild(content);
+  }
+
+  async toggleServiceModal() {
+    console.log('toggleServiceModal');
   }
 }

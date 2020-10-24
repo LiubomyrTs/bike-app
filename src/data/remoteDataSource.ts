@@ -12,3 +12,9 @@ const urls = {
 export function loadBikes(): Promise<{ data: Bike[] }> {
   return Axios.get(urls.bikes);
 }
+
+export class DataSource {
+  loadBikes(): Promise<{ data: Bike[] }> {
+    return Axios.get(urls.bikes);
+  }
+}

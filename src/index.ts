@@ -1,13 +1,13 @@
 import { HTMLDisplay } from './htmlDisplay';
 import 'bootstrap/dist/css/bootstrap.css';
-import { loadBikes } from './data/remoteDataSource';
+import { DataSource } from './data/remoteDataSource';
 
-console.log('Bike app');
+let ds = new DataSource();
 
 async function displayData(): Promise<HTMLElement> {
-  const display = new HTMLDisplay();
+  let display = new HTMLDisplay();
   display.props = {
-    bikes: (await loadBikes()).data
+    dataSource: ds
   }
   return display.getContent();
 }
