@@ -6,6 +6,7 @@ export interface Bike {
 }
 
 export interface Detail {
+  id: number;
   name: string;
   brand: string;
   type: DETAIL_TYPE;
@@ -55,41 +56,49 @@ abstract class Service {
   ): void;
 }
 
-export class ServiceCenter extends Service {
-  protected craftsmans = new Map<number, Craftsman>();
-
-  constructor(
-    public name: string,
-    public address: string,
-    public repairableDetails: DETAIL_TYPE[],
-    public initialCraftsmans?: Craftsman[],
-  ) {
-    super(address, repairableDetails)
-    if (initialCraftsmans) {
-      initialCraftsmans.forEach(ic => {
-        ic.companyName = name;
-        this.craftsmans.set(ic.id, ic);
-      });
-    }
-  }
-
-  getCraftsmanById(id: number): Craftsman {
-    return this.craftsmans.get(id);
-  }
-
-  get serviceCrafstmans(): IterableIterator<Craftsman> {
-    return this.craftsmans.values();
-  }
-
-  public repairDetail(bike: Bike, detail: Detail, date: Date, price: number, craftsman: Craftsman) {
-    if (this.repairableDetails.includes(detail.type)) {
-      const serviceRecord = new ServiceRecord(bike, new Date(), price, craftsman);
-      detail.services.push(serviceRecord);
-    } else {
-      alert('Sorry we can\'t repair your detail');
-    }
-  }
+export interface ServiceCenter {
+  id: number;
+  name: string;
+  address: string;
+  repairableDetails: DETAIL_TYPE[],
+  craftsmans: Craftsman[]
 }
+
+// export class ServiceCenter extends Service {
+//   protected craftsmans = new Map<number, Craftsman>();
+
+//   constructor(
+//     public name: string,
+//     public address: string,
+//     public repairableDetails: DETAIL_TYPE[],
+//     public initialCraftsmans?: Craftsman[],
+//   ) {
+//     super(address, repairableDetails)
+//     if (initialCraftsmans) {
+//       initialCraftsmans.forEach(ic => {
+//         ic.companyName = name;
+//         this.craftsmans.set(ic.id, ic);
+//       });
+//     }
+//   }
+
+//   getCraftsmanById(id: number): Craftsman {
+//     return this.craftsmans.get(id);
+//   }
+
+//   get serviceCrafstmans(): IterableIterator<Craftsman> {
+//     return this.craftsmans.values();
+//   }
+
+//   public repairDetail(bike: Bike, detail: Detail, date: Date, price: number, craftsman: Craftsman) {
+//     if (this.repairableDetails.includes(detail.type)) {
+//       const serviceRecord = new ServiceRecord(bike, new Date(), price, craftsman);
+//       detail.services.push(serviceRecord);
+//     } else {
+//       alert('Sorry we can\'t repair your detail');
+//     }
+//   }
+// }
 
 export class HomeService extends Service {
    constructor(
