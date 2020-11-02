@@ -1,17 +1,16 @@
 import { createElement } from "./tools/jsxFactory";
-import { Bike } from "./data/entities";
+import { Bike } from "./data/interfaces/bike";
 
 export class BikeCard {
   props: {
     bike: Bike;
-    toggleServiceModal: () => void;
-  }
+    toggleServiceModal: (bike: Bike) => void;
+  };
 
   public getContent() {
-    console.log(this.props);
     return (
       <div>
-        <div className="card" style="width: 18rem;">
+        <div className="card">
           <div className="card-body">
             <h5 className="card-title">
               {this.props.bike.name} {this.props.bike.year}
@@ -27,7 +26,10 @@ export class BikeCard {
             })}
           </ul>
           <div className="card-body">
-            <button onclick={ this.props.toggleServiceModal } className="btn card-link btn-primary">
+            <button
+              onclick={() => this.props.toggleServiceModal(this.props.bike)}
+              className="btn card-link btn-primary"
+            >
               Add Service
             </button>
           </div>

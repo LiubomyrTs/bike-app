@@ -10,9 +10,6 @@ export const formValues = (fields: string[]) => (
       formValues[f] = (document.getElementById(f) as HTMLFormElement).value
     });
     let result = origFunction.apply(this, args);
-    console.log(result);
-    console.log(formValues);
-    
     return await result(formValues);
   };
 };

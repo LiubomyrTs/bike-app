@@ -1,22 +1,11 @@
 import { createElement } from './tools/jsxFactory';
-import { Detail, ServiceCenter } from './data/entities';
+import { ServiceCenter } from './data/interfaces/serviceCenter';
+import { Detail } from './data/interfaces/detail';
 
 export class ServiceForm {
   props: {
     details: Detail[];
     services: ServiceCenter[];
-    submitServiceRecord: (serviceData: any) => void;
-    submitForm: () => void;
-  }
-
-  logData = () => {
-    const detail = (document.getElementById("detail") as HTMLSelectElement).value;
-    const service = (document.getElementById("service") as HTMLSelectElement).value;
-    const serviceData = {
-      detail,
-      service
-    };
-    this.props.submitServiceRecord(serviceData);
   }
 
   getContent() {
@@ -38,10 +27,10 @@ export class ServiceForm {
         </select>
       </div>
       <div className="form-group">
-        <label  htmlFor="service">
+        <label  htmlFor="serviceCenter">
           Choose service
         </label>
-        <select name="service" id="service"  className="form-control">
+        <select name="service" id="serviceCenter"  className="form-control">
           { 
             this.props.services.map((service) => {
               return (

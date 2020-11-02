@@ -1,0 +1,4 @@
+export enum MODAL_MODE {
+  SERVICE_FORM = "SERVICE_FORM",
+  SUCCESS = "SUCCESS"
+}

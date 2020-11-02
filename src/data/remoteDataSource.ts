@@ -1,5 +1,8 @@
 import Axios from "axios";
-import { Bike, ServiceCenter } from './entities';
+
+import { Bike } from './interfaces/bike';
+import { ServiceCenter } from './interfaces/serviceCenter';
+import { ServiceRecordExtended } from './interfaces/serviceRecord';
 
 const protocol = "http";
 const hostname = "localhost";
@@ -24,9 +27,13 @@ export class DataSource {
     return Axios.get(urls.serviceCenters);
   }
 
-  storeOrder(serviceRecordData): Promise<number> {
+  storeServiceRecord(serviceRecordData: ServiceRecordExtended): Promise<number> {
     return Axios.post(urls.serviceRecords, serviceRecordData).then(
       (response) => response.data.id
     );
+  }
+
+  getServiceRecord() {
+    return Axios.get(urls.serviceRecords);
   }
 }

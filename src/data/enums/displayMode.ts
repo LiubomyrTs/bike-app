@@ -1,0 +1,4 @@
+export enum DISPLAY_MODE {
+  BIKES = 'BIKES',
+  SERVICE_LIST = 'SERVICE_LIST'
+}
