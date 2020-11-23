@@ -1,8 +1,6 @@
-import Axios from "axios";
-
-import { Bike } from './interfaces/bike';
-import { ServiceCenter } from './interfaces/serviceCenter';
 import { ServiceRecordExtended } from './interfaces/serviceRecord';
+import { Observable } from 'rxjs';
+import { ajax, AjaxResponse } from 'rxjs/ajax';
 
 const protocol = "http";
 const hostname = "localhost";
@@ -14,26 +12,27 @@ const urls = {
   serviceRecords: `${protocol}://${hostname}:${port}/serviceRecords`
 };
 
-export function loadBikes(): Promise<{ data: Bike[] }> {
-  return Axios.get(urls.bikes);
-}
-
 export class DataSource {
-  loadBikes(): Promise<{ data: Bike[] }> {
-    return Axios.get(urls.bikes);
+  loadBikes(): Observable<AjaxResponse> {
+    return ajax(urls.bikes);
   }
 
-  loadServiceCenters(): Promise<{ data: ServiceCenter[] }>{
-    return Axios.get(urls.serviceCenters);
+  loadServiceCenters(): Observable<AjaxResponse> {
+    return ajax(urls.serviceCenters);
   }
 
-  storeServiceRecord(serviceRecordData: ServiceRecordExtended): Promise<number> {
-    return Axios.post(urls.serviceRecords, serviceRecordData).then(
-      (response) => response.data.id
-    );
+  storeServiceRecord(serviceRecordData: ServiceRecordExtended): Observable<AjaxResponse> {
+    return ajax({
+      url: urls.serviceRecords,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: serviceRecordData
+    });
   }
 
-  getServiceRecord() {
-    return Axios.get(urls.serviceRecords);
+  getServiceRecord(): Observable<AjaxResponse> {
+    return ajax(urls.serviceRecords);
   }
 }

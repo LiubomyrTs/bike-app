@@ -86,10 +86,10 @@
         "year": 2014
       },
       "detail": {
-        "id": 2,
-        "name": "Anthem",
-        "brand": "Giant",
-        "type": "FRAME"
+        "id": 1,
+        "name": "Reeba",
+        "brand": "Rockshox",
+        "type": "FORK"
       },
       "serviceCenter": {
         "id": 1,
@@ -125,10 +125,10 @@
         "year": 2016
       },
       "detail": {
-        "id": 1,
-        "name": "XC",
-        "brand": "Suntour",
-        "type": "FORK"
+        "id": 2,
+        "name": "Talon",
+        "brand": "Giant",
+        "type": "FRAME"
       },
       "serviceCenter": {
         "id": 1,
@@ -164,10 +164,10 @@
         "year": 2014
       },
       "detail": {
-        "id": 3,
-        "name": "Float",
-        "brand": "Fox",
-        "type": "REERSHOCK"
+        "id": 1,
+        "name": "Reeba",
+        "brand": "Rockshox",
+        "type": "FORK"
       },
       "serviceCenter": {
         "id": 1,
@@ -217,18 +217,18 @@
     },
     {
       "bike": {
-        "id": 2,
-        "name": "GIANT Talon",
+        "id": 1,
+        "name": "GIANT Anthem",
         "details": [
           {
             "id": 1,
-            "name": "XC",
-            "brand": "Suntour",
+            "name": "Reeba",
+            "brand": "Rockshox",
             "type": "FORK"
           },
           {
             "id": 2,
-            "name": "Talon",
+            "name": "Anthem",
             "brand": "Giant",
             "type": "FRAME"
           },
@@ -239,46 +239,7 @@
             "type": "REERSHOCK"
           }
         ],
-        "year": 2016
-      },
-      "detail": {
-        "id": 1,
-        "name": "XC",
-        "brand": "Suntour",
-        "type": "FORK"
-      },
-      "serviceCenter": {
-        "id": 1,
-        "name": "Bike factory",
-        "address": "13 str."
-      },
-      "id": 5
-    },
-    {
-      "bike": {
-        "id": 2,
-        "name": "GIANT Talon",
-        "details": [
-          {
-            "id": 1,
-            "name": "XC",
-            "brand": "Suntour",
-            "type": "FORK"
-          },
-          {
-            "id": 2,
-            "name": "Talon",
-            "brand": "Giant",
-            "type": "FRAME"
-          },
-          {
-            "id": 3,
-            "name": "Float",
-            "brand": "Fox",
-            "type": "REERSHOCK"
-          }
-        ],
-        "year": 2016
+        "year": 2014
       },
       "detail": {
         "id": 3,
@@ -291,46 +252,7 @@
         "name": "Bike factory",
         "address": "13 str."
       },
-      "id": 6
-    },
-    {
-      "bike": {
-        "id": 2,
-        "name": "GIANT Talon",
-        "details": [
-          {
-            "id": 1,
-            "name": "XC",
-            "brand": "Suntour",
-            "type": "FORK"
-          },
-          {
-            "id": 2,
-            "name": "Talon",
-            "brand": "Giant",
-            "type": "FRAME"
-          },
-          {
-            "id": 3,
-            "name": "Float",
-            "brand": "Fox",
-            "type": "REERSHOCK"
-          }
-        ],
-        "year": 2016
-      },
-      "detail": {
-        "id": 2,
-        "name": "Talon",
-        "brand": "Giant",
-        "type": "FRAME"
-      },
-      "serviceCenter": {
-        "id": 1,
-        "name": "Bike factory",
-        "address": "13 str."
-      },
-      "id": 7
+      "id": 5
     }
   ]
 }

@@ -12,10 +12,10 @@ export abstract class Display {
     changeDisplayMode: (mode: DISPLAY_MODE) => void;
   }
 
-  async getContent(): Promise<HTMLElement> {
-    await this.updateContent();
+  getContent(): HTMLElement {
+    this.updateContent();
     return this.containerElement;
   }
 
-  async abstract updateContent(): Promise<void>;
+  abstract updateContent(): void;
 }

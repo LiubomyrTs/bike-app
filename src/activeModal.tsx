@@ -9,10 +9,15 @@ export class ActiveModal {
   props: {
     show: boolean;
     mode: MODAL_MODE;
-    details: Detail[];
-    services: ServiceCenter[];
+    header: string;
     toggle: () => void;
-    submitServiceRecord: (serviceData: any) => void;
+
+    letter?: string;
+    count?: number;
+
+    details?: Detail[];
+    services?: ServiceCenter[];
+    submitServiceRecord?: (serviceData: any) => void;
   };
 
   submitForm() {
@@ -27,18 +32,18 @@ export class ActiveModal {
   }
 
   getContent() {
-    let modalForm;
-    let btns;
+    let modalBody;
+    let modalBtns;
 
     switch (this.props.mode) {
       case MODAL_MODE.SERVICE_FORM:
-        modalForm = (
+        modalBody = (
           <ServiceForm
             details={this.props.details}
             services={this.props.services}
           />
         );
-        btns = (
+        modalBtns = (
           <div>
             <button
               type="button"
@@ -58,8 +63,8 @@ export class ActiveModal {
         );
         break;
       case MODAL_MODE.SUCCESS:
-        modalForm = <div>Service was succesfully saved</div>;
-        btns = (
+        modalBody = <div>Service was succesfully saved</div>;
+        modalBtns = (
           <button
             type="button"
             className="btn btn-danger btn-small"
@@ -69,6 +74,14 @@ export class ActiveModal {
           </button>
         );
         break;
+      case MODAL_MODE.CHECK:
+        modalBody = (
+          <div>
+            {Array(this.props.count).fill(0).map(() => <span className="badge badge-success mr-2 p-2 d-inline-block"></span>)}
+            <h2 id="dynamic-letter">{this.props.letter}</h2>
+          </div>
+        );
+        modalBtns = "";
     }
 
     return this.props.show ? (
@@ -76,10 +89,10 @@ export class ActiveModal {
         <div className="app-backdrop" onclick={this.props.toggle}></div>
         <div className="app-modal-content">
           <div className="app-modal-header">
-            <h3>Add service</h3>
+            <h3>{this.props.header}</h3>
           </div>
-          <div className="app-modal-body">{modalForm}</div>
-          <div className="app-modal-button-group">{btns}</div>
+          <div className="app-modal-body">{modalBody}</div>
+          <div className="app-modal-button-group">{modalBtns}</div>
         </div>
       </div>
     ) : (
