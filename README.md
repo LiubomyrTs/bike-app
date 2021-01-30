@@ -1,8 +1,6 @@
 # bike-app
 
-> Typescript project
-> Using JSX for templating
-> Using Webpack for compiling
+> Typescript project using JSX for templating and webpack for compiling
 
 ## Build Setup
 
